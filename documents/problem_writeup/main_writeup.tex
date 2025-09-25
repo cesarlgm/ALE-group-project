@@ -1,4 +1,4 @@
-\documentclass[a4paper, 11pt,addpoints,answers]{exam}
+\documentclass[a4paper, 11pt,addpoints]{exam}
 
 \input{commandspreamble.tex}
 \usepackage{titlesec}
@@ -20,7 +20,7 @@
 
 \title{\large{\textbf{ECNM10112: Applied Labour Economics}}}
 \author{\textbf{Empirical Group Project}}
-\date{\textbf{Due date:} \red{\textbf{Thursday,  7  November at 3 pm}}}
+\date{\textbf{Due date:} \red{\textbf{Thursday,  6  November at 3 pm}}}
 \begin{document}
 \maketitle
 
@@ -28,21 +28,26 @@
 
 \bitem 
 \item You will work in \textbf{pairs}. Each pair will submit a unique handout and set of code.
-\item Please include both your group and exam numbers in the cover of your handout. Do not write your names in your handout.
-\item This project consists of \textbf{7 questions}. \textbf{You need to answer all questions}. You should produce a document containing answers to all these questions, including tables and figures.
+\item Please include both your group and exam numbers on the cover of your handout. \textbf{Do not write your names in your handout}.
+\item This project consists of \textbf{7 questions}. \textbf{You need to answer all questions}. You should produce a document containing the answers to all these questions, including tables and figures.
 \item \textbf{Keep all answers to questions 1 to 6 to at most 125 words}. The word limit excludes text in figures, equations, and tables. Violations of this limit will be penalised.
-\item Each group should submit a unique \textbf{pdf} file containing all their answers  along with a zip file containing all their code to LEARN. Please do not paste code into the pdf file you submit. \textbf{Only one person per group should submit}.
-\item Please name your pdf and zip files as follows: {\tt handout\_G[group number].pdf} and \\ {\tt code\_G[group\_number].zip}. For example, files for group 1 should be called {\tt handout\_G01.pdf} and {\tt code\_G01.zip}
+\item Each group should submit a unique \textbf{pdf} file containing all their answers and another file containing all their code to LEARN. Please do not paste code into the pdf file you submit. \textbf{Only one person per group should submit}.
+\item There will be \textbf{two submission} boxes: one for the pdf with your answers, and another one for your code.
+\bitem 
+    \item If all your code is in a unique script, you can submit as is.
+    \item If your code is made up of multiple files, please compress them into a zip file.
+\eitem 
+\item Please name your pdf and code files as follows: {\tt handout\_G[group number].pdf} and \\ {\tt code\_G[group\_number].[relevant extension]}. For example, files for group 1 should be called {\tt handout\_G01.pdf} and {\tt code\_G01.zip} (or {\tt code\_G01.do})
 \item Tables and figures should be appropriately labelled and they should look professional and self-explanatory. Marks will be subtracted for tables with cryptic information or screenshots from the Stata  command window (or relevant software).
 \item All your code should be reasonably commented so that an outsider would be able to make out what the code does.
 \item You are free to use any software or code language you feel most comfortable with, but solutions will only be provided with Stata code.
 \item Please note that your estimates will not exactly reproduce the numbers shown in the paper. Although they should look ``qualitatively'' similar, they will not match exactly. Do not waste energy trying to make your estimates match those in the paper.
-\item \textbf{Free riding:} this a group project, you are responsible for dividing and coordinating work amongst yourselves. Refer to the \href{https://www.learn.ed.ac.uk/ultra/courses/_121272_1/outline/edit/document/_10205264_1?courseId=_121272_1&view=content}{course outline} for guidance if a group member is free riding.
+\item \textbf{Free riding:} This is a group project; you are responsible for dividing and coordinating work amongst yourselves. Refer to the \href{https://www.learn.ed.ac.uk/ultra/courses/_121272_1/outline/edit/document/_10205264_1?courseId=_121272_1&view=content}{course outline} for guidance if a group member is free riding.
 \item \textbf{Plagiarism:} All answers and code you submit must be your own work. Plagiarism will be investigated and sanctioned according to School Policy. Please note that AI (ChatGPT, GitHub/Microsoft copilot, or similar) can be very useful for helping yourself to understand how to write or troubleshoot code. You are allowed to use it in this way. However, you must not use it to write up your code and your answers. Any use of these tools should be acknowledged in your submission.
 \eitem 
 \newpage 
 \section*{Part I: cleaning the data}
-\noindent In this first part, you will work on cleaning  data from the US Censuses and the American Community Survey (ACS).
+\noindent In this first part, you will work on cleaning data from the US Censuses and the American Community Survey (ACS).
 \bitem
 	\item Please download the zip file corresponding to your group from \href{https://www.dropbox.com/scl/fo/g2xtn0yymiebz0wivfe7k/AGwxkhhcV-4sBT43u8ZHYL4?rlkey=a8g768pa9m9v067bg9pudg10h&dl=0}{this folder} and decompress it.
 	\item You will find two files:
@@ -54,7 +59,7 @@
 	
 	The data was extracted from the 5\% 1990 and 2000 census samples, and the 3-year ACS for 2011 (see \burl{https://usa.ipums.org/usa-action/samples}). \textbf{For simplicity, I will refer to the 2008-2011 ACS as the 2011 data.}
 	
-	All variables keep the original names and labels from IPUMS.  Additional data documentation can be found at \burl{https://usa.ipums.org/usa-action/variables/group}. Just search for the variable you want and click on the variable name on the search results. When you click on the variable name, you will be in a site similar to the screenshot. There is  an analogous page for all the variables in the dataset.
+	All variables keep the original names and labels from IPUMS.  Additional data documentation can be found at \burl{https://usa.ipums.org/usa-action/variables/group}. Just search for the variable you want and click on the variable name on the search results. When you click on the variable name, you will be on a site similar to the one shown in the screenshot. There is an analogous page for each variable in the dataset. The codes tab shows a description of the meaning of each variable value, universe indicates the set of people to whom each question was asked, and questionnaire text shows you the actual question that was asked to the respondent. 
 	
 	\includegraphics[width=.9\textwidth]{screenshot_educ.png}
 \eitem 
@@ -95,19 +100,19 @@
 	\input{../../results/figures/figure_1.tex}
 	\end{solution}
 	\FloatBarrier
-	\question[15] The authors show that some of the residual data issues come from the rounding of incomes by IPUMS. For confidentiality purposes, IPUMS sometimes rounds incomes to multiples of USD 100. The authors take a lot of care to ``undo'' the rounding. However, their (careful) procedure is too cumbersome for the objectives of this assignment. We will cheat and take a shortcut. We will just add random noise to some women's income.
+	\question[15] The authors show that some of the residual data issues come from the rounding of incomes by IPUMS. For confidentiality purposes, IPUMS sometimes rounds incomes to multiples of USD 100. The authors take a lot of care to ``undo'' the rounding. However, their (careful) procedure is too cumbersome for the objectives of this assignment. We will cheat and do a much simpler procedure that will achieve a similar result. We will add random noise to some women's income.
 	\label{question:noise}
 	\benu[label=(\alph*)]
-		\item Set the random seed to 100 [\href{https://stats.oarc.ucla.edu/stata/faq/how-can-i-draw-a-random-sample-of-my-data/#:~:text=Setting%20the%20seed&text=The%20seed%20is%20the%20number,command%20followed%20by%20a%20number}{Stata}] [\href{https://r-coder.com/set-seed-r/}{R}]. Setting the seed guarantees that your results are reproducible. \textbf{Set the seed in your do file, don't do it manually. If you don't set the seed, you will get different results every time you run your code}.
+		\item Set the random seed to 100 [\href{https://stats.oarc.ucla.edu/stata/faq/how-can-i-draw-a-random-sample-of-my-data/#:~:text=Setting%20the%20seed&text=The%20seed%20is%20the%20number,command%20followed%20by%20a%20number}{Stata}] [\href{https://r-coder.com/set-seed-r/}{R}]. Setting the seed guarantees that your results are. \textbf{Set the seed in your do file, don't do it manually. If you don't set the seed, you will get different results every time you run your code}.
 		\item Generate a dummy called {\tt target\_women} equal to one for women satisfying both these conditions:
 		\bitem 
 			\item They have non-zero income.
 			\item Their relative share of the couple's income is between 0.49 and 0.51 (inclusive).
  		\eitem   
- 		\item We will add  income noise to 40\% of the women satisfying the conditions above. We will choose these women randomly. To do so:
+ 		\item \label{item:addnoise} We will add  income noise to 40\% of the women satisfying the conditions above. We will choose these women randomly. To do so:
 		\bitem 
 		\item Generate a uniform random number between 0 and 1 for women with {\tt target\_women} equal to one. 
-		\item We will add noise to women whose random number is lower or equal to 0.4. Flag this women with the dummy variable {\tt flag\_noise}.
+		\item We will add noise to women whose random number is lower than or equal to 0.4. Flag these women with the dummy variable {\tt flag\_noise}.
 		\item Generate the variable {\tt income\_noise} as follows:
 		\begin{quote} 
 			{\tt
@@ -123,7 +128,7 @@
 		\end{quote}
 		\eitem 
 	\eenu 
-	Recompute the income share using {\tt noise\_inctot} and plot it in a histogram. Your histogram will look nicer if you plot only women with non-zero income. Why do you think it is important that we selected randomly the women we added income noise in (c)?
+	Recompute the income share using {\tt noise\_inctot} and plot it in a histogram. Your histogram will look nicer if you plot only women with non-zero income. Why do you think it is important that we randomly selected the women we added income noise in \ref{item:addnoise}?
 	\begin{solution}
 		Figure \ref{fig:figure_2} shows that adding noise to the wife's income made the spike at 0.5 disappear, which is what the authors wanted to solve. It is important to select the women randomly to ensure we did not introduce selection bias into our exercise.
 	
@@ -134,10 +139,10 @@
 \noindent \textbf{In this second part, you will use the data you cleaned in part I to do a Regression Discontinuity exercise. We will cover RD on week 6. Quick notes are available \href{https://cesarlgm.github.io/documents/teaching/labour_documents/rdd_notes.pdf}{here}. \newline \newline For this second part, drop couples where the wife has zero income. All calculations should be made using the corrected income share you computed  in question (\ref{question:noise})}
 \question[15] We will first make a visual version of the RDD. This is a replication of Figure III in the paper. To do so:
 \bitem 
-\item Group wife's share of income into bins of width 0.05 that include the top of the interval. For example: the first bin includes shares of income from 0 to 0.05 (inclusive). The second includes shares \textbf{strictly greater to} 0.05 and \textbf{lower or equal to} 0.1, and so on and so forth.
+\item Group wife's share of income into bins of width 0.05 that include the top of the interval. For example: the first bin includes shares of income from 0 to 0.05 (inclusive). The second includes shares \textbf{strictly greater than} 0.05 and \textbf{lower or equal to} 0.1, and so on and so forth.
 \item Collapse / aggregate your data at the bin-year level. When aggregating, compute the count of couples in each bin-year cell.
 \item Compute a new variable showing, for each year, the share of couples that belong to each income share bin.
-\item Reproduce Figure III for the years 1990, 2000 and 2011. Example code to produce similar graphs is available \href{https://cesarlgm.github.io/documents/teaching/labour_documents/code_example_lowess.pdf}{here}. \textbf{Be aware that, while similar, there will be some differences between your figure and the paper's.}
+\item Reproduce Figure III for the years 1990, 2000, and 2011. Example code to produce similar graphs is available \href{https://cesarlgm.github.io/documents/teaching/labour_documents/code_example_lowess.pdf}{here}. Evidently, you will need to adjust the code to suit your purposes. \textbf{Be aware that, while similar, there will be some differences between your figure and the paper's.}
 \eitem 
 Explain \textbf{in your own words} what the graphs you produced show.
 \begin{solution}
@@ -149,7 +154,7 @@ Explain \textbf{in your own words} what the graphs you produced show.
 \bitem 
 	\item Go back to the individual-level data. Group wife's share of income into bins of 2.5 percentage points width and collapse/aggregate it by year and bin. When aggregating it, compute the count of the number of couples.
 	\item Compute a new variable showing, for each year, the share of couples that display a particular income share value. Call this variable {\tt share\_couples}.
-	\item Estimate a RD regression using {\tt income\_share} as running variable and  {\tt share\_couples} as dependent variable. Include linear, quadratic and cubic terms of the running variable. Set the discontinuity at 50\% of relative income. Compute a unique estimate for the whole period (i.e. do not compute estimates by decade) and allow for different functional form on each side of the discontinuity.
+	\item Estimate a RD regression using {\tt income\_share} as running variable and  {\tt share\_couples} as dependent variable. Include linear, quadratic, and cubic terms of the running variable. Set the discontinuity at 50\% of relative income. Compute a unique estimate for the whole period (i.e. do not compute estimates by decade) and allow for different functional form on each side of the discontinuity.
 \eitem 
 Interpret \textbf{using your own words} the estimate of the discontinuity term. Is it statistically significant? Explain in your own words what do you need to assume to interpret this estimate in a causal way.
 \begin{solution}
@@ -159,21 +164,21 @@ Interpret \textbf{using your own words} the estimate of the discontinuity term. 
 		&&+\beta_4 D_{it}(wife\_share_{it}-.5)+\beta_5 D_{it}(wife\_share_{it}-.5)^2\\
 		&&+\beta_5 D_{it}(wife\_share_{it}-.5)^3)+\varepsilon_{it}
 	\eeqns
-	where $D_{it}$ is a dummy equal to one if wife's share of income is greater than 0.5. The estimate indicates that the likelihood of observing a couple where the wife makes just slightly more than the husband is 1.6 p.p. lower than one in which the wife makes just slightly less than the husband. This drop is significant at the 1\%.
+	where $D_{it}$ is a dummy equal to one if the wife's share of income is greater than 0.5. The estimate indicates that the likelihood of observing a couple where the wife makes just slightly more than the husband is 1.6 p.p. lower than one in which the wife makes just slightly less than the husband. This drop is significant at the 1\%.
 	
 	\input{../../results/tables/table_2.tex}
 \end{solution}
-\question[15] Suppose that an sceptical reader of the paper tells you that he disagrees with the authors' claim that women's relative income is the main driver of the discontinuity you estimated. Instead, he tells you that this is driven by an aversion to form couples where the woman is more educated than the man and, thus, the discontinuity is picking up changes in relative education within the couple.
+\question[15] Suppose that a sceptical reader of the paper tells you that he disagrees with the authors' claim that women's relative income is the main driver of the discontinuity you estimated. Instead, he tells you that this is driven by an aversion to form couples where the woman is more educated than the man and, thus, the discontinuity is picking up changes in relative education within the couple.
 \begin{enumerate}[label=(\alph*)]
 \item Explain briefly how would you test whether there is any merit to this hypothesis using the data you have available. 
 \item Carry out your test and explain whether there's any merit to the reader's claim.
 \end{enumerate}
 \begin{solution}
-	A simple way to look at this is to just do the same exercise as in the previous question, but using the share of couples with a more educated wife as outcome. The table and figure below show that there seems to be a small discontinuity at 0.5. So, there might be some merit to the reader's claim, but it is hard to say whether he is right just with this data. It can still be the case that everything is driven by an aversion to a wife with more income. Because more educated people tend to have more income, then couples with more educated wives will tend to be less likely. 
+	A simple way to look at this is to just do the same exercise as in the previous question, but using the share of couples with a more educated wife as the outcome. The table and figure below show that there seems to be a small discontinuity at 0.5. So, there might be some merit to the reader's claim, but it is hard to say whether he is right just with this data. It can still be the case that everything is driven by an aversion to a wife with more income. Because more educated people tend to have more income, then couples with more educated wives will tend to be less likely. 
 	\input{../../results/figures/figure_4.tex}
 	\input{../../results/tables/table_3.tex}
 \end{solution}
 \end{questions}
 \bibliographystyle{apalike}
-\bibliography{../../../../../../0_central_library/Papers/library}{}
+\bibliography{documents/problem_writeup/bibliography}{}
 \end{document}
