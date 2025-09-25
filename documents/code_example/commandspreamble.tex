@@ -1,0 +1,118 @@
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+%package usage
+\usepackage[table,xcdraw,usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{threeparttablex}
+\usepackage{etoolbox}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{makecell}
+\usepackage{tabularx}
+\usepackage{csquotes}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{flafter} 
+\usepackage{dcolumn} 
+\usepackage{natbib}
+\usepackage{rotating}	
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{adjustbox}
+\usepackage{tcolorbox}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{tabularx}
+\tcbuselibrary{skins,breakable}
+\usetikzlibrary{shadings,shadows}
+\usepackage{threeparttable}
+\usepackage{subfig}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage[encoding,filenameencoding=utf8,extendedchars,space]{grffile}
+\newcommand{\addfig}[2]{\begin{center}
+			\includegraphics[width=#1\textwidth]{#2}
+	\end{center}
+}
+
+%\usepackage[capposition=top]{floatrow}
+%\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\expect}[2]{\mathbb{E}_{#2}\left(#1\right)}
+\newcommand{\explaino}[2]{\overbrace{#1}^{\text{\textbf{#2}}}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\alert}[1]{{\textbf{\color{red}#1}}}
+%general commands
+\newcommand{\beqns}{\begin{eqnarray*}}
+\newcommand{\eeqns}{\end{eqnarray*}}
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\newcommand{\benu}{\begin{enumerate}}
+\newcommand{\eenu}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+\newcommand{\smallGap}{\vspace{.25cm}}
+\newcommand{\oemph}[1]{\textbf{\orange{#1}}}
+
+\newenvironment{block}[1]{%
+	\tcolorbox[beamer,%
+	noparskip,breakable,
+	colback=LightGreen,colframe=DarkGreen,%
+	colbacklower=LimeGreen!75!LightGreen,%
+	title=#1]}%
+{\endtcolorbox}
+
+
+\newcommand{\sym}[1]{\rlap{#1}}% Thanks David Carlisle
+
+\usepackage{siunitx}
+\sisetup{
+	detect-mode,
+	group-digits		= false,
+	input-symbols		= ( ) [ ] - +,
+	table-align-text-post	= false,
+	input-signs             = ,
+}
+
+%mathematical commands
+
+\newcommand{\cov}{\text{cov}}
+\newcommand{\var}[1]{\text{var}\left(#1\right)}
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\blue}[1]{\color{blue}{#1}}
+\newcommand{\green}[1]{{\color{Green}#1}}
+
+\newcommand{\vs}{\vspace{1mm}}
+\usepackage{framed}
+\definecolor{shadecolor}{gray}{0.875}
+\specialcomment{answer}{\begin{shaded}}{\end{shaded}}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+\newcommand{\thesispath}{..}

@@ -1,0 +1,81 @@
+\documentclass[a4paper, 11pt]{article}
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\input{commandspreamble.tex}
+\usepackage{titlesec}
+\usepackage{breakurl}
+\urlstyle{same}
+\usepackage{float}
+\usepackage{natbib}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{upquote}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+\onehalfspacing
+
+%
+%\newif\ifoptionSolution
+%
+%
+%\optionSolutiontrue
+%
+%\ifoptionSolution
+%\newcommand{\solution}[1]{{\textbf{\red{Solution:}} #1}}
+%\else
+%\newcommand{\solution}[1]{{#1}}
+%\fi
+
+
+\newcommand{\questionpoints}[1]{
+	\par\noindent\textbf{[#1 mark(s)]}
+}
+
+\title{\large{\textbf{ECNM10112: Applied Labour Economics}}}
+\author{\textbf{Lowess example}}
+\date{}
+\begin{document}
+	\maketitle
+	
+Below is a quick example to produce graphs using {\tt lowess} in Stata. 
+
+\section{What does {\tt lowess} do?}
+The usual {\tt lfit} commands only allow you to fit linear regressions in your graphs. {\tt lowess} allows you to produce figures with very flexible functional forms without explicitly specifying them, that is you don't have to tell Stata the function that governs the data.
+
+The intuition of what it does is very simple. Roughly, rather that computing a regression of $y$ on $x$ with \emph{all} the data, {\tt lowess} splits the range of values $x$ into many groups, and runs regressions for each group. So, for example, if $x$ goes from 1 to 10, {\tt lowess} runs a regression for the values from 1 to 2, another for 2 to 3, \dots,  and predicts the values for each of these groups.  So, by fitting many linear segments you can produce a function that is very flexible.
+\section{Plotting the data}
+\bitem 
+\item Let us first load one of the Stata teaching datasets:
+
+{\tt	sysuse auto, clear}
+
+this dataset contains data on cars.
+\item Now, we will plot the relationship between car price and weight while fitting a local regression line. The code below produces a scatter plot that distinguishes between domestic and foreign cars, and fits regression lines for each car type:
+\begin{lstlisting}
+	twoway (scatter price weight if foreign==0, ///
+		mcolor(ebblue%30)) ///
+	(scatter price weight if foreign==1, ///	
+		mcolor(orange%60)) ///
+	(lowess price weight if foreign==0, ///
+		lcolor(ebbule) lpattern(dash)) ///
+	(lowess price weight if foreign==1, ///
+		lcolor(orange) lpattern(dash)),  ///
+	legend(order(1 "Domestic" 2 "Foreign") ///
+		ring(0) pos(11) col(1) region(lstyle(none)))
+\end{lstlisting}
+\eitem 
+The code above should produce the following figure:
+
+\centering\includegraphics[width=.7\textwidth]{lowes_example.png}
+\end{document}
